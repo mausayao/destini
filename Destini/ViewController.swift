@@ -46,34 +46,39 @@ class ViewController: UIViewController {
     // User presses one of the buttons
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender.tag == 1 {
-            if topButton.titleLabel?.text == answer1a {
-                take = 3
-            }
-            
-            if topButton.titleLabel?.text == answer2a {
-                take = 3
-            }
-            
-            if topButton.titleLabel?.text == answer3a {
-                take = 6
-            }
-            
+           takeADecision()
         } else {
-            
-            if bottomButton.titleLabel?.text == answer1b {
-                take = 2
-            }
-            
-            if bottomButton.titleLabel?.text == answer2b {
-                take = 4
-            }
-            
-            if bottomButton.titleLabel?.text == answer3b {
-                take = 5
-            }
+           takeBDecision()
+        }
+        takes()
+    }
+    
+    func takeADecision() {
+        if topButton.titleLabel?.text == answer1a {
+            take = 3
         }
         
-        takes()
+        if topButton.titleLabel?.text == answer2a {
+            take = 3
+        }
+        
+        if topButton.titleLabel?.text == answer3a {
+            take = 6
+        }
+    }
+    
+    func takeBDecision() {
+        if bottomButton.titleLabel?.text == answer1b {
+            take = 2
+        }
+        
+        if bottomButton.titleLabel?.text == answer2b {
+            take = 4
+        }
+        
+        if bottomButton.titleLabel?.text == answer3b {
+            take = 5
+        }
     }
     
     func takes() {
