@@ -54,29 +54,31 @@ class ViewController: UIViewController {
     }
     
     func takeADecision() {
-        if topButton.titleLabel?.text == answer1a {
+        
+        let buttonText = topButton.titleLabel?.text
+        
+        if buttonText == answer1a || buttonText == answer2a  {
             take = 3
         }
         
-        if topButton.titleLabel?.text == answer2a {
-            take = 3
-        }
-        
-        if topButton.titleLabel?.text == answer3a {
+        if buttonText == answer3a {
             take = 6
         }
     }
     
     func takeBDecision() {
-        if bottomButton.titleLabel?.text == answer1b {
+        
+        let buttonText = bottomButton.titleLabel?.text
+        
+        if buttonText == answer1b {
             take = 2
         }
         
-        if bottomButton.titleLabel?.text == answer2b {
+        if buttonText == answer2b {
             take = 4
         }
         
-        if bottomButton.titleLabel?.text == answer3b {
+        if buttonText == answer3b {
             take = 5
         }
     }
@@ -84,32 +86,46 @@ class ViewController: UIViewController {
     func takes() {
         switch take {
         case 1:
-            storyTextView.text = story1
-            topButton.setTitle(answer1a, for: .normal)
-            bottomButton.setTitle(answer1b, for: .normal)
+            setStoryAndOption(story: story1, answerA: answer1a, answerB: answer1b)
         case 2:
-            storyTextView.text = story2
-            topButton.setTitle(answer2a, for: .normal)
-            bottomButton.setTitle(answer2b, for: .normal)
+            setStoryAndOption(story: story2, answerA: answer2a, answerB: answer2b)
         case 3:
-            storyTextView.text = story3
-            topButton.setTitle(answer3a, for: .normal)
-            bottomButton.setTitle(answer3b, for: .normal)
+            setStoryAndOption(story: story3, answerA: answer3a, answerB: answer3b)
         case 4:
-            storyTextView.text = story4
+            setStoryAndOption(story: story4)
+            hiddenButtoons()
             alert()
         case 5:
-            storyTextView.text = story5
+            setStoryAndOption(story: story5)
+            hiddenButtoons()
             alert()
         case 6:
-            storyTextView.text = story6
+            setStoryAndOption(story: story6)
+            hiddenButtoons()
             alert()
         default:
             storyTextView.text = story1
             topButton.setTitle(answer1a, for: .normal)
             bottomButton.setTitle(answer1b, for: .normal)
+            showButtons()
         }
         
+    }
+    
+    func setStoryAndOption(story: String, answerA: String = "", answerB: String = "") {
+        storyTextView.text = story
+        topButton.setTitle(answerA, for: .normal)
+        bottomButton.setTitle(answerB, for: .normal)
+    }
+    
+    func hiddenButtoons() {
+        topButton.isHidden = true
+        bottomButton.isHidden = true
+    }
+    
+    func showButtons() {
+        topButton.isHidden = false
+        bottomButton.isHidden = false
     }
     
     func alert() {
@@ -126,6 +142,7 @@ class ViewController: UIViewController {
     func endStory() {
         take = 1
         takes()
+        showButtons()
     }
 
 }
